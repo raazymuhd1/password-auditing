@@ -1,66 +1,102 @@
-## Foundry
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+# PasswordStore ( video stop at 03.09.44 )
 
-Foundry consists of:
+## Tools 
+ - cloc -> for counting how many lines of code [https://github.com/AlDanial/cloc?tab=readme-ov-file#install-via-package-manager](cloc-install)
+ - solidity metrics -> to generate the source code metric and complexity
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+<br/>
+<p align="center">
+<img src="./password-store-logo.png" width="400" alt="password-store">
+</p>
+<br/>
 
-## Documentation
+A smart contract applicatoin for storing a password. Users should be able to store a password and then retrieve it later. Others should not be able to access the password. 
 
-https://book.getfoundry.sh/
+[Testnet deployment](https://sepolia.etherscan.io/address/0x2ecf6ad327776bf966893c96efb24c9747f6694b)
 
-## Usage
+- [PasswordStore](#passwordstore)
+- [Getting Started](#getting-started)
+  - [Requirements](#requirements)
+  - [Quickstart](#quickstart)
+- [Usage](#usage)
+  - [Deploy (local)](#deploy-local)
+  - [Testing](#testing)
+    - [Test Coverage](#test-coverage)
+- [Audit Scope Details](#audit-scope-details)
+  - [Roles](#roles)
 
-### Build
+# Getting Started
 
-```shell
-$ forge build
+## Requirements
+
+- [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+  - You'll know you did it right if you can run `git --version` and you see a response like `git version x.x.x`
+- [foundry](https://getfoundry.sh/)
+  - You'll know you did it right if you can run `forge --version` and you see a response like `forge 0.2.0 (816e00b 2023-03-16T00:05:26.396218Z)`
+
+## Quickstart
+
+```
+git clone https://github.com/Cyfrin/3-passwordstore-audit
+cd 3-passwordstore-audit
+forge build
 ```
 
-### Test
+# Usage
 
-```shell
-$ forge test
+## Deploy (local)
+
+1. Start a local node
+
+```
+make anvil
 ```
 
-### Format
+2. Deploy
 
-```shell
-$ forge fmt
+This will default to your local node. You need to have it running in another terminal in order for it to deploy.
+
+```
+make deploy
 ```
 
-### Gas Snapshots
+## Testing
 
-```shell
-$ forge snapshot
+```
+forge test
 ```
 
-### Anvil
+### Test Coverage
 
-```shell
-$ anvil
+```
+forge coverage
 ```
 
-### Deploy
+and for coverage based testing: 
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+```
+forge coverage --report debug
 ```
 
-### Cast
+# Audit Scope Details
 
-```shell
-$ cast <subcommand>
+- Commit Hash:  7d55682ddc4301a7b13ae9413095feffd9924566
+- In Scope:
 ```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+./src/
+└── PasswordStore.sol
 ```
+- Solc Version: 0.8.18
+- Chain(s) to deploy contract to: Ethereum
+
+## Roles
+
+- Owner: The user who can set the password and read the password.
+- Outsides: No one else should be able to set or read the password.
+
+
+## How to start auditing
+- see the context ( read the projects docs )
+- after understanding the context, start readin the code line by line
+- 
