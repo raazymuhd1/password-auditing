@@ -1,5 +1,5 @@
 
-# PasswordStore ( video stop at 03.09.44 )
+# PasswordStore ( video stop at 03.44.47 )
 
 ## Tools 
  - cloc -> for counting how many lines of code [https://github.com/AlDanial/cloc?tab=readme-ov-file#install-via-package-manager](cloc-install)
